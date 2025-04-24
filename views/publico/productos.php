@@ -63,15 +63,23 @@ if (isset($_GET['busqueda']) && !empty(trim($_GET['busqueda']))) {
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="h5 text-primary">$<?= number_format($p['precio'], 2) ?></span>
                         <?php if ($p['existencias'] > 0): ?>
-                            <form method="POST" action="?action=agregar-carrito">
-                                <input type="hidden" name="producto_id" value="<?= $p['id'] ?>">
-                                <div class="input-group">
-                                    <input type="number" name="cantidad" value="1" min="1" max="<?= $p['existencias'] ?>" class="form-control">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-cart-plus"></i> Añadir
-                                    </button>
-                                </div>
-                            </form>
+                            <?php if (isset($_SESSION['cliente'])): ?>
+                                <!-- Mostrar formulario para agregar al carrito si el cliente está autenticado -->
+                                <form method="POST" action="?action=agregar-carrito">
+                                    <input type="hidden" name="producto_id" value="<?= $p['id'] ?>">
+                                    <div class="input-group">
+                                        <input type="number" name="cantidad" value="1" min="1" max="<?= $p['existencias'] ?>" class="form-control">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-cart-plus"></i> Añadir
+                                        </button>
+                                    </div>
+                                </form>
+                            <?php else: ?>
+                                <!-- Mostrar botón de iniciar sesión si el cliente no está autenticado -->
+                                <a href="?action=login-cliente" class="btn btn-warning">
+                                    Inicia sesión para comprar
+                                </a>
+                            <?php endif; ?>
                         <?php else: ?>
                             <span class="text-danger">Sin existencias</span>
                         <?php endif; ?>
