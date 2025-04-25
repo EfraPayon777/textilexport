@@ -35,7 +35,7 @@ class CarritoController {
             }
         }
     
-        // Redirigir de vuelta a la página de productos
+        
         header("Location: ?action=productos");
         exit();
     }
