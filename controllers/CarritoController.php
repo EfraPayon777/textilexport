@@ -126,7 +126,7 @@ class CarritoController {
                 <p style="color: #7f8c8d;">Comprobante de Compra</p>
             </div>';
             $fechaFormateada = isset($cliente['fecha']) ? (new DateTime($cliente['fecha']))->format('d/m/Y H:i') : 'Fecha no disponible';
-            // Datos cliente (solo con campos existentes)
+            // Datos cliente 
             $html .= '
             <div style="margin-bottom: 20px;">
                 <p>
@@ -226,7 +226,7 @@ class CarritoController {
             }
         }
     
-        // Redirigir a la vista del carrito
+       
         header("Location: ?action=ver-carrito");
         exit();
     }
