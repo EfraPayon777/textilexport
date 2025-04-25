@@ -106,7 +106,7 @@ class CarritoController {
                 throw new Exception('Datos incompletos para generar el PDF');
             }
     
-            //Si no se pasa un cliente como parámetro, usar el cliente de la sesión
+           
             if (!$cliente) {
                 if (!isset($_SESSION['cliente'])) {
                     throw new Exception('Cliente no autenticado');
